@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const uuidv4 = require('uuid/v4');
 
 const app = express();
 
@@ -12,7 +13,38 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
-app.use(cors());
+//app.use(cors());
+
+app.get('/testimonials', (req, res) => {
+  res.json(db);
+});
+
+app.get('/testimonials/random', (req, res) => {
+  res.json(db[Math.floor(Math.random() * db.length)]);
+});
+
+app.get('/testimonials/:id', (req, res) => {
+  res.json(db[req.params.id - 1]);
+});
+
+app.post('/testimonials', (req, res) => {
+  const { author, text } = req.body;
+  const id = uuidv4();
+  res.json({ id: id, author: author, text: text });
+});
+
+app.put('/testimonials/:id', (req, res) => {
+  const { author, text } = req.body;
+  res.json({ message: 'ok' });
+});
+
+app.delete('/testimonials/:id', (req, res) => {
+  res.json({ message: 'ok' });
+});
+
+app.get('/testimonials', (req, res) => {
+  res.json(db);
+});
 
 app.listen(8000, () => {
   console.log('Server is running on port 8000');
