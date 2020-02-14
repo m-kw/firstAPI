@@ -17,7 +17,7 @@ router.route('/seats').post((req, res) => {
   const isTaken = db.seats.some(el => el.seat === seat && el.day === day);
 
   if (isTaken) {
-    res.json({ message: 'The slot is already taken...' });
+    res.status(403).json({ message: 'The slot is already taken...' });
   } else {
     res.json(db.seats.push({ id: id, day: day, seat: seat, client: client, email: email }));
   }
