@@ -30,7 +30,7 @@ app.get('/testimonials/:id', (req, res) => {
 app.post('/testimonials', (req, res) => {
   const { author, text } = req.body;
   const id = uuidv4();
-  res.json({ id: id, author: author, text: text });
+  res.json({ message: 'ok' });
 });
 
 app.put('/testimonials/:id', (req, res) => {
@@ -45,6 +45,10 @@ app.delete('/testimonials/:id', (req, res) => {
 app.get('/testimonials', (req, res) => {
   res.json(db);
 });
+
+app.use((req, res) => {
+  res.status(404).json({ message: 'Not found...' });
+})
 
 app.listen(8000, () => {
   console.log('Server is running on port 8000');
