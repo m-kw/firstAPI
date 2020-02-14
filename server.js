@@ -1,13 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const uuidv4 = require('uuid/v4');
+const db = require('./db');
 
 const app = express();
-
-const db = [
-  {id: 1, author: 'John Doe', text: 'This company is worth every coin!'},
-  {id: 2, author: 'Amanda Doe', text: 'The really know how to make you happy'},
-];
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -16,15 +12,15 @@ app.use(express.json());
 //app.use(cors());
 
 app.get('/testimonials', (req, res) => {
-  res.json(db);
+  res.json(db.testimonials);
 });
 
 app.get('/testimonials/random', (req, res) => {
-  res.json(db[Math.floor(Math.random() * db.length)]);
+  res.json(db.testimonials[Math.floor(Math.random() * db.testimonials.length)]);
 });
 
 app.get('/testimonials/:id', (req, res) => {
-  res.json(db[req.params.id - 1]);
+  res.json(db.testimonials[req.params.id - 1]);
 });
 
 app.post('/testimonials', (req, res) => {
@@ -43,7 +39,7 @@ app.delete('/testimonials/:id', (req, res) => {
 });
 
 app.get('/testimonials', (req, res) => {
-  res.json(db);
+  res.json(db.testimonials);
 });
 
 app.use((req, res) => {
