@@ -36,7 +36,7 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Not found...' });
 });
 
-mongoose.connect('mongodb://localhost:27017/festivalDB', {userNewUrlParser: true, userUnifiedTopology: true });
+mongoose.connect('mongodb+srv://user-mkw:xwICCxhxkpeykqt0@cluster0-ltnvo.mongodb.net/test?retryWrites=true&w=majority', {userNewUrlParser: true, userUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
