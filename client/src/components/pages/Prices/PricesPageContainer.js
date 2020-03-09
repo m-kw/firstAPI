@@ -1,14 +1,14 @@
 import { connect} from 'react-redux';
-import PricesPage from './PricesPage';
-import { getRequest, getWorkshops, loadWorkshopsRequest } from '../../../redux/workshopsRedux';
+import Prices from './PricesPage';
+import { getRequest, getConcerts, loadConcertsRequest } from '../../../redux/concertsRedux';
 
 const mapStateToProps = state => ({
-    workshops: getWorkshops(state),
-    request: getRequest(state),
+    concerts: getConcerts(state),
+    requests: getRequest(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-    loadWorkshops: () => dispatch(loadWorkshopsRequest()),
+    loadConcerts: () => dispatch(loadConcertsRequest()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PricesPage);
+export default connect(mapStateToProps, mapDispatchToProps)(Prices);
