@@ -36,7 +36,9 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Not found...' });
 });
 
+
 mongoose.connect('mongodb+srv://user-mkw:k913aydynjwSXsYl@cluster0-ltnvo.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+
 const db = mongoose.connection;
 
 db.once('open', () => {
