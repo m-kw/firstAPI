@@ -12,7 +12,6 @@ class Prices extends React.Component {
   render() {
 
     const { concerts, requests } = this.props;
-    console.log('concerts', concerts, requests);
 
     if (requests.pending) return <Progress animated color="primary" value={50} />;
     else if (requests.error) return <Alert color="warning">{requests.error}</Alert>;
