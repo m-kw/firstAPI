@@ -1,9 +1,17 @@
 const Concert = require('../models/concert.model');
+const Workshop = require('../models/workshop.model');
 
 exports.getAll = async (req, res) => {
 
   try {
-    res.json(await Concert.find());
+    const concerts = await Concert.find();
+
+    for (let concert of concerts) {
+      concert.workshops = await Workshop.find({ concertID: concert._id });
+      await concert.save();
+    }
+
+    res.json(await Concert.find().populate('workshops'));
   } catch(err) {
     res.status(500).json(err);
   }
