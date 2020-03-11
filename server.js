@@ -37,7 +37,7 @@ app.use((req, res) => {
 });
 
 
-mongoose.connect('mongodb+srv://user-mkw:k913aydynjwSXsYl@cluster0-ltnvo.mongodb.net/festivalDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb+srv://user-mkw:${process.env.dbPassword}@cluster0-ltnvo.mongodb.net/festivalDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
